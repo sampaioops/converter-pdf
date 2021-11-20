@@ -1,0 +1,23 @@
+version: "3.5"
+
+services:
+  converter-pdf:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    environment:
+      POSTGRES_URL: jdbc:postgresql:/db:5432/dev
+      POSTGRE_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev

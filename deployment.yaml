@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: converter-pdf
+  labels:
+    app: converter-pdf
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: converter-pdf
+  template:
+    metadata:
+      labels:
+        app: converter-pdf
+    spec:
+      containers:
+        - name: converter-pdf
+          image: converter-pdf:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          env:
+            - name: POSTGRES_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_url
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: converter-pdf
+  labels:
+    run: converter-pdf
+spec:
+  ports:
+    - port: 8081
+      targetPort: 8081
+      protocol: TCP
+  selector:
+    app: converter-pdf
