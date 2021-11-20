@@ -42,4 +42,5 @@ kubectl create -f .\deployment.yaml
 ```
 
 ##Screenshot:
-![alt text](https://github.com/sampaioops/converter-pdf/blob/main/image_test_shedlock.png?raw=true)
+
+![alt text](https://github.com/sampaioops/converter-pdf/blob**/**main/image_test_shedlock.png?raw=true)
