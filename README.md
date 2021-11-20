@@ -1,5 +1,6 @@
 # Converter Pdf
- Testing Schedule of multi instance in kubernetes with ShedLock
+It was just supposed to be a pdf conversion application, and I ended up using it to test the scheduler with shedlock, LoL.
+- Test with scheduler with multiple instances in kubernetes using with shedlock
 
 ### Setup
 1. minikube: https://minikube.sigs.k8s.io/docs/start/
@@ -23,11 +24,11 @@ kubectl create -f .\kube\service-postgres.yaml
 ```
 
 ### Application deployment in kubernetes
-1. package application jar
+1. Package application jar
 ```
 .\mvnw clean install
 ```
-2. generate docker image
+2. Generate docker image
 ```
 .\mvnw dockerfile:build
 ```
@@ -35,7 +36,7 @@ kubectl create -f .\kube\service-postgres.yaml
 ```
 kubectl create -f .\kube\config-map.yaml
 ```
-5. create deployment of application in kubernetes
+5. Create deployment of application in kubernetes
 ```
 kubectl create -f .\deployment.yaml
 ```
