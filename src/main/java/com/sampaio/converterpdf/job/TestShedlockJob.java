@@ -14,7 +14,7 @@ public class TestShedlockJob {
 
 
     @Scheduled(cron = "0 0/1 * * * ?")
-    @SchedulerLock(name = "TaskScheduler_scheduledTask", lockAtLeastFor = "PT30S", lockAtMostFor = "PT1M")
+    @SchedulerLock(name = "TestShedlockJob_process", lockAtLeastFor = "PT30S", lockAtMostFor = "PT1M")
     public void process() {
         logger.info(LocalDateTime.now() + " - I'm job ");
     }
